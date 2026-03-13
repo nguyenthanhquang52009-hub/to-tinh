@@ -14,33 +14,26 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 font-family:sans-serif;
-color:white;
 text-align:center;
+color:white;
 overflow:hidden;
 
-background:url("anh.jpg");
+/* Ảnh nền của bạn */
+background-image:url("anh.jpg");
 background-size:cover;
 background-position:center;
+background-repeat:no-repeat;
 }
 
 h1{
-font-size:45px;
+font-size:40px;
 text-shadow:0 0 20px pink;
-}
-
-/* Ảnh hiển thị */
-#photo{
-width:250px;
-border-radius:20px;
-margin-top:20px;
-box-shadow:0 0 20px pink;
-display:none;
 }
 
 button{
 font-size:22px;
 padding:12px 30px;
-margin:20px;
+margin:15px;
 border:none;
 border-radius:30px;
 cursor:pointer;
@@ -53,7 +46,7 @@ color:white;
 }
 
 #no{
-background:#666;
+background:#555;
 color:white;
 position:absolute;
 }
@@ -61,11 +54,11 @@ position:absolute;
 .heart{
 position:fixed;
 bottom:-20px;
-font-size:20px;
-animation:bay 5s linear infinite;
+font-size:22px;
+animation:fly 5s linear;
 }
 
-@keyframes bay{
+@keyframes fly{
 
 0%{
 transform:translateY(0);
@@ -86,9 +79,6 @@ opacity:0;
 
 <h1>Làm người yêu anh nhé ❤️</h1>
 
-<!-- Ảnh hiển thị -->
-<img id="photo" src="anh.jpg">
-
 <audio id="music">
 <source src="nhac.mp3" type="audio/mpeg">
 </audio>
@@ -102,22 +92,23 @@ opacity:0;
 
 <script>
 
-let noBtn=document.getElementById("no")
 let yesBtn=document.getElementById("yes")
+let noBtn=document.getElementById("no")
 let music=document.getElementById("music")
-let photo=document.getElementById("photo")
+
+// bấm đồng ý
 
 yesBtn.onclick=function(){
 
 music.play()
 
-photo.style.display="block"
-
 alert("Anh biết mà ❤️")
 
 }
 
-noBtn.onmouseover=function(){
+// nút từ chối chạy
+
+noBtn.addEventListener("mouseover",function(){
 
 let x=Math.random()*window.innerWidth
 let y=Math.random()*window.innerHeight
@@ -125,18 +116,19 @@ let y=Math.random()*window.innerHeight
 noBtn.style.left=x+"px"
 noBtn.style.top=y+"px"
 
-}
+})
 
-function taoTim(){
+// tim bay
+
+function createHeart(){
 
 let heart=document.createElement("div")
 
-heart.innerHTML="💖"
-
 heart.className="heart"
 
+heart.innerHTML="💖"
+
 heart.style.left=Math.random()*100+"vw"
-heart.style.fontSize=(Math.random()*25+15)+"px"
 
 document.body.appendChild(heart)
 
@@ -146,7 +138,7 @@ heart.remove()
 
 }
 
-setInterval(taoTim,300)
+setInterval(createHeart,300)
 
 </script>
 
