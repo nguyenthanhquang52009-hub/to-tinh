@@ -7,62 +7,67 @@
 <style>
 
 body{
-    margin:0;
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
-    font-family:Arial;
-    overflow:hidden;
+margin:0;
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+font-family:sans-serif;
+color:white;
+text-align:center;
+overflow:hidden;
 
-    background-image:url("anh.jpg");
-    background-size:cover;
-    background-position:center;
+background:url("background.jpg");
+background-size:cover;
+background-position:center;
 }
 
 h1{
-    color:white;
-    font-size:35px;
-    text-shadow:3px 3px 10px black;
+font-size:45px;
+text-shadow:0 0 20px pink;
 }
 
 button{
-    padding:15px 30px;
-    font-size:18px;
-    margin:10px;
-    border:none;
-    border-radius:10px;
-    cursor:pointer;
+font-size:22px;
+padding:12px 30px;
+margin:20px;
+border:none;
+border-radius:30px;
+cursor:pointer;
+transition:0.3s;
 }
 
 #yes{
-    background:#ff4d6d;
-    color:white;
+background:#ff4d6d;
+color:white;
 }
 
 #no{
-    background:#ddd;
+background:#666;
+color:white;
+position:absolute;
 }
-
-/* trái tim */
 
 .heart{
-    position:fixed;
-    color:red;
-    font-size:20px;
-    animation:fly 4s linear forwards;
+position:fixed;
+bottom:-20px;
+font-size:20px;
+animation:bay 5s linear infinite;
 }
 
-@keyframes fly{
-    0%{
-        transform:translateY(0);
-        opacity:1;
-    }
-    100%{
-        transform:translateY(-800px);
-        opacity:0;
-    }
+@keyframes bay{
+
+0%{
+transform:translateY(0);
+opacity:1;
+}
+
+100%{
+transform:translateY(-100vh);
+opacity:0;
+}
+
 }
 
 </style>
@@ -70,85 +75,63 @@ button{
 
 <body>
 
-    <audio id="music" autoplay loop>
-  <source src="nhac.mp3" type="audio/mpeg">
-    </audio>
-    
 <h1>Làm người yêu anh nhé ❤️</h1>
 
-<div id="buttons">
-<button id="yes">Đồng ý</button>
-<button id="no">Từ chối</button>
+<audio id="music">
+<source src="nhac.mp3" type="audio/mpeg">
+</audio>
+
+<div>
+
+<button id="yes">Đồng ý 💖</button>
+<button id="no">Từ chối 😢</button>
+
 </div>
 
 <script>
 
-let count = 0
-let noBtn = document.getElementById("no")
-let yesBtn = document.getElementById("yes")
-let container = document.getElementById("buttons")
+let noBtn=document.getElementById("no")
+let yesBtn=document.getElementById("yes")
+let music=document.getElementById("music")
 
-// nút từ chối
+yesBtn.onclick=function(){
 
-noBtn.addEventListener("click",function(){
-
-count++
-
-if(count < 5){
-
-let scale = 1 - count*0.15
-noBtn.style.transform = "scale("+scale+")"
-
-let x = Math.random()*window.innerWidth*0.8
-let y = Math.random()*window.innerHeight*0.8
-
-noBtn.style.position="absolute"
-noBtn.style.left=x+"px"
-noBtn.style.top=y+"px"
-
-}else{
-
-noBtn.style.display="none"
-
-let newYes = document.createElement("button")
-newYes.innerHTML="Đồng ý luôn ❤️"
-newYes.style.background="#ff4d6d"
-newYes.style.color="white"
-
-container.appendChild(newYes)
-
-}
-
-})
-
-// nút đồng ý
-
-yesBtn.addEventListener("click",function(){
+music.play()
 
 alert("Anh biết mà ❤️")
 
-})
+}
 
-// trái tim bay
+noBtn.onmouseover=function(){
 
-function createHeart(){
+let x=Math.random()*window.innerWidth
+let y=Math.random()*window.innerHeight
 
-let heart = document.createElement("div")
+noBtn.style.left=x+"px"
+noBtn.style.top=y+"px"
+
+}
+
+function taoTim(){
+
+let heart=document.createElement("div")
+
+heart.innerHTML="💖"
+
 heart.className="heart"
-heart.innerHTML="❤️"
 
 heart.style.left=Math.random()*100+"vw"
-heart.style.bottom="0"
+heart.style.fontSize=(Math.random()*25+15)+"px"
 
 document.body.appendChild(heart)
 
 setTimeout(()=>{
 heart.remove()
-},4000)
+},5000)
 
 }
 
-setInterval(createHeart,300)
+setInterval(taoTim,300)
 
 </script>
 
