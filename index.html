@@ -28,6 +28,15 @@ font-size:45px;
 text-shadow:0 0 20px pink;
 }
 
+/* Ảnh hiển thị */
+#photo{
+width:250px;
+border-radius:20px;
+margin-top:20px;
+box-shadow:0 0 20px pink;
+display:none;
+}
+
 button{
 font-size:22px;
 padding:12px 30px;
@@ -77,6 +86,9 @@ opacity:0;
 
 <h1>Làm người yêu anh nhé ❤️</h1>
 
+<!-- Ảnh hiển thị -->
+<img id="photo" src="anh.jpg">
+
 <audio id="music">
 <source src="nhac.mp3" type="audio/mpeg">
 </audio>
@@ -93,10 +105,13 @@ opacity:0;
 let noBtn=document.getElementById("no")
 let yesBtn=document.getElementById("yes")
 let music=document.getElementById("music")
+let photo=document.getElementById("photo")
 
 yesBtn.onclick=function(){
 
 music.play()
+
+photo.style.display="block"
 
 alert("Anh biết mà ❤️")
 
